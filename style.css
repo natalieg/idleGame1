@@ -1,0 +1,44 @@
+body {
+
+}
+
+.main {
+
+}
+
+div {
+
+}
+
+.middle {
+
+}
+
+.actions {  
+
+}
+
+.btn {
+    text-align: center;
+    width: 90px;
+    border: 2px solid #97aeb0;
+    padding: 10px;
+    display: inline-block;
+    margin: 30px 10px;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    cursor: pointer;
+  }
+  
+  .collectFood {
+    background-color: rgb(103, 158, 117);
+    border: 2px solid #97aeb0;
+  }
+
+  .collectSticks {
+    background-color: rgb(51, 37, 11);
+    color: white;
+  }
