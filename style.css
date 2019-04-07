@@ -5,10 +5,12 @@
 }
 
 .btn {
+  position: relative;
     text-align: center;
-    width: 90px;
-    border: 2px solid #97aeb0;
-    padding: 10px;
+    width: 100px;
+    height: 25px;
+    border: 2px solid #232525;
+    padding: 0;
     display: inline-block;
     margin: 30px 10px;
     user-select: none;
@@ -20,8 +22,34 @@
   }
   
   .collectFood {
-    background-color: rgb(103, 158, 117);
+    /* background-color: rgb(103, 158, 117); */
     border: 2px solid #97aeb0;
+  }
+
+  .collectFoodBar {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    background-color: rgb(195, 231, 128);
+    padding: 0;
+    top: 0;
+    left: 0;
+  }
+
+  .buttonText {
+    text-align: center;
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    padding: 2px;
+    top: 0;
+    left: 0;
+  }
+
+  .lastCollected {
+    width: inherit;
+    position: absolute;
+    top: 30px;
   }
 
   .collectSticks {

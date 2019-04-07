@@ -16,9 +16,12 @@ var maxEnergy = 100,
     currentEnergy = maxEnergy;
 
 var storageFood = 2, // Testvalue
-    maxStorageFood = 20
-foodValue = 5;
-eatAmount = 1;
+    maxStorageFood = 40,
+    foodValue = 5,
+    eatAmount = 1,
+    collectFoodAmountMax = 5,
+    collectingFoodTime = 20; //TESTVALUE
+var canCollect = true;
 var storageSticks = 0,
     maxStorageSticks = 20;
 
@@ -67,8 +70,8 @@ function checkHungerAndFood() {
         case (currentHunger <= 10):
             $('.hungerBar').css("background-color", "red");
             break;
-        default: 
-        console.log("Something went wrong in the Switch");
+        default:
+            console.log("Something went wrong in the Switch");
     }
 
     $('.hungerBar').width(currentHunger);
@@ -82,12 +85,22 @@ function checkHungerAndFood() {
     }
 }
 
+function getRandomFood() {
+    min = Math.ceil(1);
+    max = Math.floor(collectFoodAmountMax);
+    return Math.floor(Math.random() * (max - min +1)) + min; 
+}
+
+function myFunction(p1, p2) {
+    return p1 * p2;   // The function returns the product of p1 and p2
+}
+
 // Automatic Intervalls
 
 function globalTimer() {
     checkHungerAndFood();
     counter = counter + 1;
-    console.log("Counter: " + counter);
+    // console.log("Counter: " + counter);
     if (counter > 1000) {
         counter = 0;
     }
@@ -106,11 +119,46 @@ $(document).ready(function () {
     // $('.sticks').html("Sticks " + storageSticks);
 
     // Actions
+
+    /**
+     * Action
+     * Food will be collected in "collectingFoodTime"
+     * if the storage is full the user cannot collect anything
+     */
     $(".collectFood").click(function () {
-        storageFood = storageFood + 1;
-        console.log("FOOD!!!!");
-        $('.food').html(storageFood);
-    })
+        if(storageFood < maxStorageFood){
+            if(canCollect){
+                var barWidthDecrease = 100 / collectingFoodTime;
+                var currentWidth = 100;
+                var i = 1;
+                function myLoop() {
+                    setTimeout(function () {
+                        canCollect = false;
+                        $('.collectFood').attr('disabled','disabled');
+                        currentWidth = currentWidth - barWidthDecrease;
+                        $('.collectFoodBar').width(currentWidth);
+                        i++;
+                        if (i < collectingFoodTime + 1) {
+                            myLoop();
+                        } else {
+                            var foundFood = getRandomFood();
+                            storageFood = storageFood + foundFood;
+                            console.log("Collected Food!");
+                            $('.lastCollected').html("Collected: " + foundFood);
+                            $('.food').html(storageFood);
+                            $('.collectFoodBar').width(100);
+                            canCollect = true;
+                        }
+                    }, 100)
+                }
+                myLoop();
+            } else {
+                console.log("Not yet");
+            }
+        } 
+    });
+
+
     $(".stopStart").click(function () {
         isGameActive = !isGameActive;
         changeGameStatus(isGameActive);
