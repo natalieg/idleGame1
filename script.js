@@ -8,7 +8,7 @@ var counter = 1;
 var mood = 1;
 
 var maxHunger = 100,
-    currentHunger = maxHunger,
+    currentHunger = 70, // Testvalue
     hungerValue = 1;
 var hungerTime = 1000;
 
@@ -107,17 +107,17 @@ function globalTimer() {
 }
 
 $(document).ready(function () {
-
     // Initialization
+    $('.hunger').html(currentHunger);
+    $('.energy').html("Energy " + maxEnergy);
+
     myTimerVar = setInterval(globalTimer, time);
     console.log("ready!");
 
-    $('.hunger').html(maxHunger);
-    $('.energy').html("Energy " + maxEnergy);
+  
 
     $('.food').html(storageFood);
-    // $('.sticks').html("Sticks " + storageSticks);
-
+   
     // Actions
 
     /**

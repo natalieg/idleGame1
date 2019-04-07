@@ -21,6 +21,14 @@
     cursor: pointer;
   }
   
+  .food {
+    font-size: 24px;
+    background-color: rgb(141, 117, 117);
+    border: 1px solid rgb(37, 25, 25);
+    width: 100px;
+    padding: 5px;
+  }
+
   .collectFood {
     /* background-color: rgb(103, 158, 117); */
     border: 2px solid #97aeb0;
